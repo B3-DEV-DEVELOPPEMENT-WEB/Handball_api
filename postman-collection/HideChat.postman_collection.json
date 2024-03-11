@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "d73f4362-d5eb-4124-93d0-92f774ae1ac0",
+		"name": "HideChat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21842883"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabet.thibaut@gmail.com\",\r\n    \"password\": \"azerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTgzODcwMSwiZXhwIjoxNzA5OTI1MTAxfQ.3OlFgjQALmXYRxebnbzXd8Ap_AJz1H0cdpHVxnG1ERA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/refresh_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"refresh_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CheckAuthorizedAuth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ0ZXN0MkB0ZXN0Mi5jb20iLCJpYXQiOjE3MDg2ODU3ODYsImV4cCI6MTcwODc3MjE4Nn0.opVjspJpuVyNcq0HD8vY7P_TwGV0qlSsmy9P_eNSKj0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabet.thibaut@gmail.com\",\r\n    \"password\": \"azerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YTI5YWNkMS0zMmI5LTRkYjctYWU2OC02MTRmNGI3ZTM2MmUiLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDEwMjgxNywiZXhwIjoxNzEwMTg5MjE3fQ.-lCmyT99o_xTrxwlEixBgp3CNnMcF_LXStNM5QlntEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Channels",
+			"item": [
+				{
+					"name": "CreateChannel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YTI5YWNkMS0zMmI5LTRkYjctYWU2OC02MTRmNGI3ZTM2MmUiLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDEwMzIxMCwiZXhwIjoxNzEwMTg5NjEwfQ.gNsoTOytWzj1XyY65ZHHZ047nSL73zKunQMije9UMQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Channel 5\",\r\n  \"userIds\": [\"1882d601-2104-4aab-9251-7fb2488e8c7b\", \"fd188a27-0a19-452f-8956-2bc6b1959e37\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/channels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllChannels",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YTI5YWNkMS0zMmI5LTRkYjctYWU2OC02MTRmNGI3ZTM2MmUiLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDEwMzIxMCwiZXhwIjoxNzEwMTg5NjEwfQ.gNsoTOytWzj1XyY65ZHHZ047nSL73zKunQMije9UMQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/channels?acceptedAccess=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels"
+							],
+							"query": [
+								{
+									"key": "acceptedAccess",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindOneChannel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhNWIzMzk0YS0yMDY0LTRjMmMtYWZjZC1mZmZmMjY4YTk3ZWMiLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDEwMDAzMiwiZXhwIjoxNzEwMTg2NDMyfQ.aWizG1yXpAiw_JfUZ0LevBoUL9u6zyK8QPDxc2TMYaQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/channels/a0242eda-b539-433b-a54f-fc08cb5ddb53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels",
+								"a0242eda-b539-433b-a54f-fc08cb5ddb53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateChannel",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Test666\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/channels/5c0536fd-8925-4c55-9d07-32bd3c53d0a3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels",
+								"5c0536fd-8925-4c55-9d07-32bd3c53d0a3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "acceptedAccess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhNWIzMzk0YS0yMDY0LTRjMmMtYWZjZC1mZmZmMjY4YTk3ZWMiLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDEwMDAzMiwiZXhwIjoxNzEwMTg2NDMyfQ.aWizG1yXpAiw_JfUZ0LevBoUL9u6zyK8QPDxc2TMYaQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/channels/acceptedAccess/b334329f-6da0-458a-a424-006cbc2058b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels",
+								"acceptedAccess",
+								"b334329f-6da0-458a-a424-006cbc2058b1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refusedAccess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhNWIzMzk0YS0yMDY0LTRjMmMtYWZjZC1mZmZmMjY4YTk3ZWMiLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDEwMDAzMiwiZXhwIjoxNzEwMTg2NDMyfQ.aWizG1yXpAiw_JfUZ0LevBoUL9u6zyK8QPDxc2TMYaQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/channels/refusedAccess/466126bb-729f-4d9f-8a93-bf89be044ce0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels",
+								"refusedAccess",
+								"466126bb-729f-4d9f-8a93-bf89be044ce0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteChannel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/channels/d0d2b4d6-fae0-460e-8798-f186b645dba6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"channels",
+								"d0d2b4d6-fae0-460e-8798-f186b645dba6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "CreateMessage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDI5ZmY2ZS1hOGY4LTQyMjItYmJlZi1hNDY2MmRjMzZhN2QiLCJ1c2VyRW1haWwiOiJ0ZXN0LnRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzEwMDAwMjE3LCJleHAiOjE3MTAwODY2MTd9.l_YPBFMdHdh0cXru-wqRr9VQbwSfUY-E-jsB-zqq2Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"Your message content here eheheh\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/messages/64bed802-0e8b-4c68-bbb8-e6522098b2c6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"messages",
+								"64bed802-0e8b-4c68-bbb8-e6522098b2c6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
