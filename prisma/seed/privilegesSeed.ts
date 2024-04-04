@@ -3,7 +3,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  const roles = ['coach', 'contributeur', 'joueur'];
+  
+  const roles = ['Coach', 'Contributeur', 'Joueur'];
 
   for (const name of roles) {
     await prisma.privileges.create({
