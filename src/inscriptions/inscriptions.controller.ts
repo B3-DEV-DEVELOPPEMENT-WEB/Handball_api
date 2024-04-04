@@ -1,34 +1,29 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { InscriptionsService } from './inscriptions.service';
 import { CreateInscriptionDto } from './dto/create-inscription.dto';
-import { UpdateInscriptionDto } from './dto/update-inscription.dto';
 
 @Controller('inscriptions')
 export class InscriptionsController {
   constructor(private readonly inscriptionsService: InscriptionsService) {}
 
   @Post()
-  create(@Body() createInscriptionDto: CreateInscriptionDto) {
+  async create(@Body() matchId: string, @Req() req) {
+    const token = req.user;
+    const userId = token.user.userId;
+
+    const createInscriptionDto: CreateInscriptionDto = {
+      matchId: matchId,
+      userId: userId
+    };
+
     return this.inscriptionsService.create(createInscriptionDto);
   }
 
-  @Get()
-  findAll() {
-    return this.inscriptionsService.findAll();
-  }
+  @Delete(':matchId')
+  remove(@Param('matchId') matchId: string, @Req() req) {
+    const token = req.user;
+    const userId = token.user.userId;
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.inscriptionsService.findOne(id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInscriptionDto: UpdateInscriptionDto) {
-    return this.inscriptionsService.update(id, updateInscriptionDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.inscriptionsService.remove(id);
+    return this.inscriptionsService.remove(matchId, userId);
   }
 }
