@@ -20,12 +20,23 @@ model Privileges {
 }
 
 model User {
-  id          String     @id @default(uuid())
-  email       String     @unique
+  id          String      @id @default(uuid())
+  email       String      @unique
   password    String
   name        String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  privilege   Privileges @relation(fields: [privilegeId], references: [id])
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  privilege   Privileges  @relation(fields: [privilegeId], references: [id])
   privilegeId Int
+  actualites  Actualite[]
+}
+
+model Actualite {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
 }
