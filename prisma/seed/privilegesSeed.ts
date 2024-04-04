@@ -16,6 +16,27 @@ async function main() {
   }
 
   console.log(`Roles [${roles.join(', ')}] created.`);
+  const CoachPrivilege = {
+    data: {
+      name: 'Coach',
+    },
+  };
+
+  const ContributeurPrivilege = {
+    data: {
+      name: 'Contributeur',
+    },
+  };
+
+  const JoueurPrivilege = {
+    data: {
+      name: 'Joueur',
+    },
+  };
+
+  await prisma.privileges.create(CoachPrivilege);
+  await prisma.privileges.create(ContributeurPrivilege);
+  await prisma.privileges.create(JoueurPrivilege);
 }
 
 main()
