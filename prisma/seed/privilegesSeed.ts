@@ -3,20 +3,27 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  const userPrivilege = {
+  const CoachPrivilege = {
     data: {
-      name: 'User',
+      name: 'Coach',
     },
   };
 
-  const adminPrivilege = {
+  const ContributeurPrivilege = {
     data: {
-      name: 'Admin',
+      name: 'Contributeur',
     },
   };
 
-  await prisma.privileges.create(userPrivilege);
-  await prisma.privileges.create(adminPrivilege);
+  const JoueurPrivilege = {
+    data: {
+      name: 'Joueur',
+    },
+  };
+
+  await prisma.privileges.create(CoachPrivilege);
+  await prisma.privileges.create(ContributeurPrivilege);
+  await prisma.privileges.create(JoueurPrivilege);
 }
 
 main()
