@@ -3,27 +3,17 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  const CoachPrivilege = {
-    data: {
-      name: 'Coach',
-    },
-  };
+  const roles = ['Coach', 'Contributeur', 'Joueur'];
 
-  const ContributeurPrivilege = {
-    data: {
-      name: 'Contributeur',
-    },
-  };
+  for (const name of roles) {
+    await prisma.privileges.create({
+      data: {
+        name,
+      },
+    });
+  }
 
-  const JoueurPrivilege = {
-    data: {
-      name: 'Joueur',
-    },
-  };
-
-  await prisma.privileges.create(CoachPrivilege);
-  await prisma.privileges.create(ContributeurPrivilege);
-  await prisma.privileges.create(JoueurPrivilege);
+  console.log(`Roles [${roles.join(', ')}] created.`);
 }
 
 main()
