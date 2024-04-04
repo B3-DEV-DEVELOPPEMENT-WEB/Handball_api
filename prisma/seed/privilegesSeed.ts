@@ -1,11 +1,9 @@
-// script de seeding (ex: prisma/seed.ts)
-
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const roles = ['coach', 'contributeur', 'joueur']; // different roles du brief
+  const roles = ['coach', 'contributeur', 'joueur'];
 
   for (const name of roles) {
     await prisma.privileges.create({
@@ -23,5 +21,5 @@ main()
     throw e;
   })
   .finally(async () => {
-    await prisma.$disconnect(); // deconnexion
+    await prisma.$disconnect();
   });
