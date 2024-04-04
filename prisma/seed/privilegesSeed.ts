@@ -1,22 +1,21 @@
+// script de seeding (ex: prisma/seed.ts)
+
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const userPrivilege = {
-    data: {
-      name: 'User',
-    },
-  };
+  const roles = ['coach', 'contributeur', 'joueur'];
 
-  const adminPrivilege = {
-    data: {
-      name: 'Admin',
-    },
-  };
+  for (const name of roles) {
+    await prisma.privileges.create({
+      data: {
+        name,
+      },
+    });
+  }
 
-  await prisma.privileges.create(userPrivilege);
-  await prisma.privileges.create(adminPrivilege);
+  console.log(`Roles [${roles.join(', ')}] created.`);
 }
 
 main()
