@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  const roles = ['coach', 'contributeur', 'joueur'];
+  const roles = ['coach', 'contributeur', 'joueur']; // different roles du brief
 
   for (const name of roles) {
     await prisma.privileges.create({
@@ -23,5 +23,5 @@ main()
     throw e;
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    await prisma.$disconnect(); // deconnexion
   });
