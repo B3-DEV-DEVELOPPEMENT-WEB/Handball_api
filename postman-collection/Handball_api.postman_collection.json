@@ -158,6 +158,131 @@
 					"response": []
 				}
 			]
+		},
+		{
+
+      "name": "Matchs",
+			"item": [
+				{
+					"name": "Create Match",
+
+      "name": "Actualites",
+			"item": [
+				{
+					"name": "Create Actualite",
+
+          "request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+
+              }
+						],
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "<Votre_Token>", "type": "string" }]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2024-04-05T15:00:00.000Z\",\n    \"opponent\": \"Équipe Adverse\",\n    \"score\": \"0-0\"\n}",
+
+            },
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_ACCESS_TOKEN>"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Nouvelle actualité\",\n    \"content\": \"Contenu de la nouvelle actualité\"\n}",
+
+          "options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+
+        "raw": "http://localhost:3000/matchs",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["matchs"]
+
+      "raw": "http://localhost:3000/actualite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actualite"
+							]
+
+}
+					},
+					"response": []
+				},
+				{
+
+          "name": "Update Match",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "<Votre_Token>", "type": "string" }]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"score\": \"2-1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/matchs/{id}",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["matchs", "{id}"]
+
+              "name": "Find All Actualites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_ACCESS_TOKEN>"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/actualite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actualite"
+							]
+
+}
+					},
+					"response": []
+				}
+			]
 		}
+
 	]
 }
