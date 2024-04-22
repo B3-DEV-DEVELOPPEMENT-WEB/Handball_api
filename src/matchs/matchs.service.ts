@@ -1,4 +1,4 @@
-import { Injectable, ForbiddenException } from '@nestjs/common';
+import { Injectable, ForbiddenException, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
@@ -6,14 +6,6 @@ import { UpdateMatchDto } from './dto/update-match.dto';
 @Injectable()
 export class MatchsService {
   constructor(private prisma: PrismaService) {}
-
-  async isUserCoach(userId: string): Promise<boolean> {
-    const user = await this.prisma.user.findUnique({
-      where: { id: userId },
-      include: { privilege: true },
-    });
-    return user?.privilege?.name === 'Coach';
-  }
 
   async createMatch(createMatchDto: CreateMatchDto, userId: string) {
     const isCoach = await this.isUserCoach(userId);
@@ -40,6 +32,60 @@ export class MatchsService {
     return this.prisma.match.update({
       where: { id },
       data: updateMatchDto,
+    });
+  }
+
+  async isUserCoach(userId: string): Promise<boolean> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: { privilege: true },
+    });
+    return user?.privilege?.name === 'Coach';
+  }
+
+  async isUserPLayer(userId: string): Promise<boolean> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: { privilege: true },
+    });
+    return user?.privilege?.name === 'Joueur';
+  }
+
+  // inscription
+  async addUserToMatch(matchId: string, userId: string) {
+    // Vérifiez d'abord si l'utilisateur est un joueur
+    const isPlayer = await this.isUserPLayer(userId);
+    if (!isPlayer) {
+      throw new ForbiddenException('Seuls les joueurs peuvent s’inscrire au match.');
+    }
+
+    // Récupérer le match par son id
+    const match = await this.prisma.match.findUnique({
+      where: { id: matchId },
+      include: { participants: true }
+    });
+
+    // Vérifier que le match existe
+    if (!match) {
+      throw new NotFoundException('Match not found');
+    }
+
+    // Vérifier si l'utilisateur est déjà dans le match
+    const userAlreadyInMatch = match.participants.some((user) => user.id === userId);
+
+    if (userAlreadyInMatch) {
+      throw new BadRequestException('L\'utilisateur participe déjà à ce match');
+    }
+
+    // Mettre à jour le tableau participants du match pour ajouter l'utilisateur
+    return this.prisma.match.update({
+      where: { id: matchId },
+      data: {
+        participants: {
+          connect: { id: userId },
+        }
+      },
+      include: { participants: true }  // Inclure les participants dans la réponse
     });
   }
 }
