@@ -12,7 +12,6 @@ export class MatchsService {
     if (!isCoach) {
       throw new ForbiddenException('Seuls les coaches peuvent créer des matchs.');
     }
-    // @ts-ignore
     const { opponent, ...dataWithoutOpponent } = createMatchDto;
     return this.prisma.match.create({
       data: {
@@ -29,6 +28,7 @@ export class MatchsService {
     if (!isCoach) {
       throw new ForbiddenException('Seuls les coaches peuvent modifier des matchs.');
     }
+
     return this.prisma.match.update({
       where: { id },
       data: updateMatchDto,
