@@ -6,7 +6,7 @@ async function main() {
   const roles = ['Coach', 'Contributeur', 'Joueur'];
 
   for (const name of roles) {
-    await prisma.privileges.create({
+    await prisma.privilege.create({
       data: {
         name,
       },
