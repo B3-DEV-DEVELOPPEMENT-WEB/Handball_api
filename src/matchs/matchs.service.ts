@@ -20,7 +20,6 @@ export class MatchsService {
     if (!isCoach) {
       throw new ForbiddenException('Seuls les coaches peuvent créer des matchs.');
     }
-    // Suppression de la propriété 'opponent' de createMatchDto
     // @ts-ignore
     const { opponent, ...dataWithoutOpponent } = createMatchDto;
     return this.prisma.match.create({
