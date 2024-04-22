@@ -10,7 +10,6 @@ interface AuthenticatedRequest extends Request {
   user: { userId: string };
 }
 
-
 @Controller('matchs')
 export class MatchsController {
   constructor(private readonly matchsService: MatchsService) {}
@@ -34,5 +33,12 @@ export class MatchsController {
   async addUserToMatch(@Param('matchId') matchId: string, @Req() req: AuthenticatedRequest) {
     const userId = req.user.userId;
     return this.matchsService.addUserToMatch(matchId, userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put('desinscription/:matchId')
+  async removeUserFromMatch(@Param('matchId') matchId: string, @Req() req: AuthenticatedRequest) {
+    const userId = req.user.userId;
+    return this.matchsService.removeUserFromMatch(matchId, userId);
   }
 }

@@ -88,4 +88,37 @@ export class MatchsService {
       include: { participants: true }  // Inclure les participants dans la réponse
     });
   }
+
+  // désinscription
+  async removeUserFromMatch(matchId: string, userId: string) {
+    const isPlayer = await this.isUserPLayer(userId);
+    if (!isPlayer) {
+      throw new ForbiddenException('Seuls les joueurs peuvent se désinscrire du match.');
+    }
+
+    const match = await this.prisma.match.findUnique({
+      where: { id: matchId },
+      include: { participants: true }
+    });
+
+    if (!match) {
+      throw new NotFoundException('Match not found');
+    }
+
+    const userInMatch = match.participants.some((user) => user.id === userId);
+
+    if (!userInMatch) {
+      throw new BadRequestException('L\'utilisateur ne participe pas à ce match');
+    }
+
+    return this.prisma.match.update({
+      where: { id: matchId },
+      data: {
+        participants: {
+          disconnect: { id: userId },
+        }
+      },
+      include: { participants: true }
+    });
+  }
 }
