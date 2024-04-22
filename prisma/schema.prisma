@@ -1,9 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Ceci est votre fichier de schéma Prisma,
+// pour en savoir plus à ce sujet, consultez la documentation : https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-// Set the provider postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.
+// Vous cherchez des moyens d'accélérer vos requêtes ou de scaler facilement avec vos fonctions serverless ou edge ?
+// Essayez Prisma Accelerate : https://pris.ly/cli/accelerate-init
+// Définissez le fournisseur postgresql, mysql, sqlite, sqlserver, mongodb ou cockroachdb.
 datasource db {
   provider = "sqlite"
   url      = env("SQLITE_DATABASE_URL")
@@ -13,19 +13,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Privileges {
+model Privilege {
   id    Int     @id @default(autoincrement())
   name  String?
   users User[]
 }
 
 model User {
-  id          String     @id @default(uuid())
-  email       String     @unique
-  password    String
-  name        String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  privilege   Privileges @relation(fields: [privilegeId], references: [id])
-  privilegeId Int
+  id           String    @id @default(uuid())
+  email        String    @unique
+  password     String
+  name         String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  privilege    Privilege @relation(fields: [privilegeId], references: [id])
+  privilegeId  Int
+  participated Match[]
+}
+
+model Match {
+  id           String   @id @default(uuid())
+  date         DateTime
+  score        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  participants User[]
 }

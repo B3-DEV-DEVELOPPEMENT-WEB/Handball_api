@@ -53,9 +53,15 @@ export class AuthService {
     const { email, password } = userLoginDto;
 
     const user = await this.usersService.findOne(email);
-    if (!(await this.usersService.validatePassword(password, user.password))) {
-      throw new UnauthorizedException();
+    if (!user) {
+      throw new UnauthorizedException('Invalid login credentials.');
     }
+
+    const passwordIsValid = await this.usersService.validatePassword(password, user.password);
+    if (!passwordIsValid) {
+      throw new UnauthorizedException('Invalid login credentials.');
+    }
+
     return user;
   }
 }
