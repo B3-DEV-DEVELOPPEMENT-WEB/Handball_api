@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "97cc27e0-fb73-418d-a09b-0a9a47fdf603",
+		"_postman_id": "6b43799e-d173-4c60-8aa4-5940890db126",
 		"name": "Handball_api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21842883"
@@ -156,6 +156,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "FindOneUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZDE0NGRlZi02MDZiLTQxOWUtYWQ4Mi1mZjNlODVjYzRiODciLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMzc3NDA5OCwiZXhwIjoxNzEzODYwNDk4fQ.iGIAwsAlU0KeO8w6cefDv4QU1lR5S4kTOhNP55uX9LY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/0d144def-606b-419e-ad82-ff3e85cc4b87",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"0d144def-606b-419e-ad82-ff3e85cc4b87"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -165,15 +195,6 @@
 				{
 					"name": "Create Match",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"key": "Authorization",
-								"value": "Bearer <YOUR_ACCESS_TOKEN>"
-							}
-						],
 						"auth": {
 							"type": "bearer",
 							"bearer": [
@@ -184,6 +205,13 @@
 								}
 							]
 						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_ACCESS_TOKEN>"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"date\": \"2024-04-05T15:00:00.000Z\",\n    \"opponent\": \"Équipe Adverse\",\n    \"score\": \"0-0\"\n}",
@@ -196,9 +224,13 @@
 						"url": {
 							"raw": "http://localhost:3000/matchs",
 							"protocol": "http",
-							"host": ["localhost"],
+							"host": [
+								"localhost"
+							],
 							"port": "3000",
-							"path": ["matchs"]
+							"path": [
+								"matchs"
+							]
 						}
 					},
 					"response": []
@@ -206,13 +238,6 @@
 				{
 					"name": "Update Match",
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
 						"auth": {
 							"type": "bearer",
 							"bearer": [
@@ -223,6 +248,13 @@
 								}
 							]
 						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"score\": \"2-1\"\n}",
@@ -235,9 +267,94 @@
 						"url": {
 							"raw": "http://localhost:3000/matchs/{id}",
 							"protocol": "http",
-							"host": ["localhost"],
+							"host": [
+								"localhost"
+							],
 							"port": "3000",
-							"path": ["matchs", "{id}"]
+							"path": [
+								"matchs",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inscription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZDE0NGRlZi02MDZiLTQxOWUtYWQ4Mi1mZjNlODVjYzRiODciLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMzc3NDA5OCwiZXhwIjoxNzEzODYwNDk4fQ.iGIAwsAlU0KeO8w6cefDv4QU1lR5S4kTOhNP55uX9LY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/matchs/inscription/284e9f07-58ec-4e91-aae4-3445fbcd87a8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"matchs",
+								"inscription",
+								"284e9f07-58ec-4e91-aae4-3445fbcd87a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Désinscription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZDE0NGRlZi02MDZiLTQxOWUtYWQ4Mi1mZjNlODVjYzRiODciLCJ1c2VyRW1haWwiOiJnYWJldC50aGliYXV0QGdtYWlsLmNvbSIsImlhdCI6MTcxMzc3NDA5OCwiZXhwIjoxNzEzODYwNDk4fQ.iGIAwsAlU0KeO8w6cefDv4QU1lR5S4kTOhNP55uX9LY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/matchs/desinscription/284e9f07-58ec-4e91-aae4-3445fbcd87a8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"matchs",
+								"desinscription",
+								"284e9f07-58ec-4e91-aae4-3445fbcd87a8"
+							]
 						}
 					},
 					"response": []
@@ -250,15 +367,6 @@
 				{
 					"name": "Create Actualite",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"key": "Authorization",
-								"value": "Bearer <YOUR_ACCESS_TOKEN>"
-							}
-						],
 						"auth": {
 							"type": "bearer",
 							"bearer": [
@@ -269,6 +377,13 @@
 								}
 							]
 						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_ACCESS_TOKEN>"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"title\": \"Nouvelle actualité\",\n    \"content\": \"Contenu de la nouvelle actualité\"\n}",
