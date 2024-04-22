@@ -1,12 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from "@nestjs/common";
+import { Controller, Get, Post, Body, Req, UseGuards } from "@nestjs/common";
 import { ActualiteService } from './actualite.service';
-import { CreateActualiteDto } from './dto/create-actualite.dto';
-import { Request } from 'express';
+import { CreateActualiteDto, RequestWithUser } from "./dto/create-actualite.dto";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
-
-interface RequestWithUser extends Request {
-  user: { userId: string };
-}
 
 @Controller('actualite')
 export class ActualiteController {
@@ -18,7 +13,6 @@ export class ActualiteController {
     const userId = req.user.userId;
     return this.actualiteService.create(createActualiteDto, userId);
   }
-
 
   @Get()
   findAll() {
