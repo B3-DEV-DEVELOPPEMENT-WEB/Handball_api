@@ -17,4 +17,10 @@ export class UsersController {
   async findAll() {
     return this.usersService.findAll();
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':userId')
+  async findOne() {
+    return this.usersService.findAll();
+  }
 }
