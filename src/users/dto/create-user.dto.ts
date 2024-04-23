@@ -1,13 +1,17 @@
 import { IsEmail, IsNotEmpty, IsInt, IsOptional } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
+  @ApiProperty()
   @IsEmail()
   email: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   password: string;
 
+  @ApiProperty()
   @IsInt()
-  @IsOptional() // Utilisez IsOptional si le privilegeId peut être omis, sinon retirez cette ligne pour le rendre obligatoire.
+  @IsOptional()
   privilegeId: number;
 }

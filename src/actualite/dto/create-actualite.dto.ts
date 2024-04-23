@@ -1,10 +1,9 @@
-import { Request } from "express";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateActualiteDto {
+  @ApiProperty()
   title: string;
-  content: string;
-}
 
-export interface RequestWithUser extends Request {
-  user: { userId: string };
+  @ApiProperty()
+  content: string;
 }

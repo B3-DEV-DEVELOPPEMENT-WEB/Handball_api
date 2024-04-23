@@ -4,7 +4,9 @@ import { CreateMatchDto } from "./dto/create-match.dto";
 import { UpdateMatchDto } from './dto/update-match.dto';
 import { AuthenticatedRequest } from '../auth/dto/user-login.dto';
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Matchs")
 @Controller('matchs')
 export class MatchsController {
   constructor(private readonly matchsService: MatchsService) {}

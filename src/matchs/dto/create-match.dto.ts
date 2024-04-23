@@ -1,12 +1,12 @@
-import { Request } from "express";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateMatchDto {
+  @ApiProperty()
   date: string;
+
+  @ApiProperty()
   score?: string;
+
+  @ApiProperty()
   opponent?: string;
-
-}
-
-export interface AuthenticatedRequest extends Request {
-  user: { userId: string };
 }

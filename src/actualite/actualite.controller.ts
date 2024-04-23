@@ -3,7 +3,9 @@ import { ActualiteService } from './actualite.service';
 import { CreateActualiteDto } from './dto/create-actualite.dto';
 import { AuthenticatedRequest } from '../auth/dto/user-login.dto';
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Actualite")
 @Controller('actualite')
 export class ActualiteController {
   constructor(private readonly actualiteService: ActualiteService) {}
