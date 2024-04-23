@@ -1,7 +1,8 @@
 import { Controller, Post, Body, Put, Param, Req, UseGuards } from "@nestjs/common";
 import { MatchsService } from './matchs.service';
-import { AuthenticatedRequest, CreateMatchDto } from "./dto/create-match.dto";
+import { CreateMatchDto } from "./dto/create-match.dto";
 import { UpdateMatchDto } from './dto/update-match.dto';
+import { AuthenticatedRequest } from '../auth/dto/user-login.dto';
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 
 @Controller('matchs')

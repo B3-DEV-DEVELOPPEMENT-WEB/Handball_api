@@ -1,7 +1,6 @@
 import { Controller, Body, Post, UseGuards, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -18,11 +17,5 @@ export class AuthController {
       body.refresh_token,
     );
     return { access_token: newAccessToken };
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  async CheckAuthorizedAuth() {
-    return 'You have authorized!';
   }
 }

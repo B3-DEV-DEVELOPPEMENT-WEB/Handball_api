@@ -36,6 +36,4 @@ export class ActualiteService {
       include: { author: true },
     });
   }
-
-
 }

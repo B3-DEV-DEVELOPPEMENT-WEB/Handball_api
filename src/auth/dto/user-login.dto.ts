@@ -7,3 +7,7 @@ export class UserLoginDto {
   @IsNotEmpty()
   password: string;
 }
+
+export class AuthenticatedRequest {
+  user: { userId: string };
+}
